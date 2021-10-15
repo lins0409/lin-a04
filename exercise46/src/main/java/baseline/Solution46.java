@@ -5,6 +5,9 @@
 
 package baseline;
 
+import java.io.FileNotFoundException;
+import java.util.*;
+
 /*
 *Knowing how often a word appears in a sentence or block of text is helpful for creating word clouds and other types of word analysis. And it’s more useful when running it against lots of text.
 *
@@ -12,27 +15,72 @@ package baseline;
  */
 public class Solution46 {
 
-    public static void main (String[] args){
-        //initialize scanner and calls instance
-        //create a new file
-        //read in the input file, pass it into the readFile function
-        //call readFile function
-        //call printResults function
-        //close file
-    }
+    public static void main (String[] args) throws FileNotFoundException {
+        //initialize classes for file reading
+        readFile rf = new readFile();
+        Solution46 sol = new Solution46();
 
-    void readFile(){
-        //create a map or array for the information
-        //use the scanner to read the lines of input
-        //while the scanner has a line, keep add 1 to the count
-        //place the values into the map once it is done
+        //read the file and start inputting information into a map
+        HashMap <String, Integer> map = rf.readInput();
 
+        //print out the results, pass in the map
+        sol.printResults(map);
     }
 
     //printing function
-    void printResults(){
+    void printResults(HashMap<String, Integer> map){
+        int k = 0;
+        int i, j;
+        String[] keys = new String[map.size()];
         //create arrays and strings to store the values from the file
-        //sort the values
-        //print out the item and then follow it with an astrisk
+        Integer[] counts = new Integer[map.size()];
+
+        //go through the map to store everything into the array
+        for(Map.Entry<String, Integer> entry: map.entrySet()){
+            keys[k] = entry.getKey();
+            counts[k++] = entry.getValue();
+        }
+
+        int[] tempCount = new int[map.size()];
+        //transfer values from the count over to temp values for looping
+        for(i = 0; i < counts.length; i++){
+            tempCount[i] = counts[i];
+        }
+
+        //sort the array in reverse order
+        Arrays.sort(counts, Collections.reverseOrder());
+
+        //temporary keys for printing
+        String[] tempKeys = new String[map.size()];
+
+        //loop for the size of the map, so that all items are accounted for
+        for (i = 0; i < map.size(); i ++) {
+            int value = counts[i];
+
+            for (j = 0; j < tempCount.length; j++) {
+
+                if (value == tempCount[j]) {
+
+                    tempKeys[i] = keys[j];
+                    break;
+                }
+            }
+        }
+
+        System.out.println();
+
+        //print out the histogram
+        for(i = 0;i < map.size(); i++) {
+
+            int value = map.get(tempKeys[i]);
+            //print out the item, and then indent it
+            System.out.print(tempKeys[i] + " : \t");
+
+            //print out an asterisk for the number of kes
+            for (j = 0; j < value; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
     }
 }

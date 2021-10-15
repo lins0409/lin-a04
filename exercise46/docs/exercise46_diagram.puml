@@ -1,17 +1,14 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-
-main <|-- readFile
-readFile <|-- printResults
-main : open file
-readFile : Scanner()
-
-
 class Solution46 {
 main()
 readFile()
 printResults()
+}
+
+class readFile{
+readInput()
 }
 
 @enduml
