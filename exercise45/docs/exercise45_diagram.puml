@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Main --|> writeNewOuput
+Main : Scanner()
+writeNewOuput : FileWriter
+writeNewOuput : replaceAll("utilize", "use");
+
+class Solution45 {
+Main
+writeNewOuput()
+}
+
+
+@enduml
