@@ -4,8 +4,6 @@
  */
 
 package baseline;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -22,12 +20,11 @@ import java.util.Scanner;
 *Generate an index.html file that contains the name of the site inside the <title> tag and the author in a <meta> tag.
  */
 public class Solution43 {
-    //initialize scanner and Solution43 instance
-    private static final Scanner scanner = new Scanner(System.in);
-    public static final Solution43 sol = new Solution43();
 
     public static void main(String[] args) throws IOException {
-        String filePath = "./data/";
+        //initialize scanner
+        Scanner scanner = new Scanner(System.in);
+        String filePath = "./data/website/";
         //initialize booleans
         boolean yesJavaScript;
         boolean yesCSS;
@@ -57,70 +54,23 @@ public class Solution43 {
         yesCSS = (Objects.equals(createCSS, "y")) || (Objects.equals(createCSS, "Y"));
 
         //call the file creator function to create the file for the website
-        sol.createSite(webName, filePath);
-        System.out.println("Created " + filePath + webName);
+        makeSite ms = new makeSite();
+        String file = ms.createSite(webName, filePath);
+        System.out.println(file);
 
         //call the function to create the html file
-        sol.createHTML(webName, filePath, author);
-        System.out.println("Created " + filePath + webName + "/index.html");
+        makeHTML mhtml = new makeHTML();
+        String html = mhtml.createHTML(webName, filePath, author);
+        System.out.println(html);
 
         //call function to create js folder
-        sol.createJavaScriptFile(yesJavaScript, webName, filePath);
-        System.out.println("Created " + filePath + webName +"/js/");
+        makeJava mj = new makeJava();
+        String java = mj.createJavaScriptFile(yesJavaScript, webName, filePath);
+        System.out.println(java);
 
         //call function to create css folder
-        sol.createCSSFile(yesCSS, webName, filePath);
-        System.out.println("Created " + filePath + webName +"/css/");
-    }
-
-    void createSite(String name, String path){
-        //create the directory
-        String directory = path + name;
-        File newFile = new File(directory);
-
-        //actually makes the folder
-        newFile.mkdirs();
-    }
-
-    //pass in the bool
-    void createJavaScriptFile(boolean status, String name, String path){
-        //if the bool is true, have the program create a new file in the directory
-        if(status){
-            //create the
-            String directory = path + name + "/js";
-            File newFile = new File(directory);
-
-            //make the folder
-            newFile.mkdirs();
-        }
-    }
-
-    //pass in the bool
-    void createCSSFile(boolean status, String name, String path){
-        //if the bool is true, have the program create a new file in the directory
-        if(status){
-            String directory = path + name + "/css";
-            File newFile = new File(directory);
-
-            //make the folder
-            newFile.mkdirs();
-        }
-
-    }
-
-    //makes html file
-    void createHTML(String name, String path, String author) throws IOException {
-        String directory = path + name +"/index.html";
-        //create a new file in the directory
-        FileWriter HTMLWriter = new FileWriter(new File(directory));
-
-        //write in all the elements of the website into the HTML file
-        HTMLWriter.write("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n");
-        HTMLWriter.write("\t<meta author=\"" + author + "\">\n");
-        HTMLWriter.write("\t<title>" + name + "</title>\n");
-        HTMLWriter.write("</head>\n<body>\n\n</body>\n</html>");
-
-        //close the file so it actually outputs something
-        HTMLWriter.close();
+        makeCSS mcss = new makeCSS();
+        String css = mcss.createCSSFile(yesCSS, webName, filePath);
+        System.out.println(css);
     }
 }
