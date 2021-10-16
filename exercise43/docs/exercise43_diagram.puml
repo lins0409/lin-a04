@@ -1,37 +1,59 @@
 @startuml
-'https://plantuml.com/activity-diagram-beta
+'https://plantuml.com/class-diagram
 
-start
-:ClickServlet.handleRequest();
-:new page;
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
-    endif
+class Solution43{
+main()
+}
+Solution43 *-- main
+main *-- makeSite
+main *-- makeJava
+main *-- makeCSS
+main *-- makeHTML
+main : Scanner scanner
+main : String filePath
+main : boolean yesJavaScript
+main : boolean yesCSS
+main : System.out.print
+main : String webName
+main : String author
+main : String createJavaScript
+main : String createCSS
+main : makeSite ms
+main : makeHTML mhtml
+main : makeJava mj
+main : makeCSS mcss
+main : System.out.print()
 
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
-endif
 
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
-endif
+class makeSite{
+String createSite()
+String directory
+File newFile
+newFile.mkdirs()
+return created directory
+}
 
-stop
+class makeJava{
+String createJavaScript()
+String directory : file path and name
+File newFile
+newFile.mkdirs()
+return created directory
+}
+
+class makeCSS{
+String createCSS()
+String directory : file path and name
+File newFile
+newFile.mkdirs()
+return created directory
+}
+
+class makeHTML{
+String createHTML()
+String directory : file path and name
+FileWriter HTMLWriter
+return created directory
+}
 
 @enduml
