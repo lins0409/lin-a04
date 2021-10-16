@@ -24,25 +24,16 @@ public class Solution42 {
         //set the scanner to the file that the program needs to read
         Scanner inputFile = new Scanner(new File("./data/exercise42_input.txt"));
 
-        //this is to test to make sure that the file was opened without an issue
-        if (inputFile != null){
-            System.out.println("Successfully opened file\n");
-        }
-        else {
-            System.out.println("Error opening file\n");
-        }
-
         //create an array to store the names
         ArrayList<String> names = new ArrayList<String>();
 
         //scan in the file and separate each bit into their own pieces (last name, first name, salary)
-        while (inputFile.hasNextLine()) {
-            names.add(inputFile.nextLine());
-        }
+        addEmployees emp = new addEmployees();
+        ArrayList<String> addedNames = emp.addToList(inputFile, names);
 
         //store it into an array list?
         //send the list into the printing function
-        sol.printBeginningOfOutput(names);
+        sol.printBeginningOfOutput(addedNames);
 
         //close the input file
         inputFile.close();
