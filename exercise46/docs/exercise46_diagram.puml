@@ -4,11 +4,32 @@
 class Solution46 {
 main()
 readFile()
+sortResults()
 printResults()
 }
 
+Solution46 *-- readFile
+Solution46 *-- sortResults
+sortResults <|-- printResults
+sortResults : String[] keys
+sortResults : String[] counts
+sortResults : Arrays.sort
+sortResults : String[] tempCount
+sortResults : String[] tempKeys
+sortResults : return tempKeys
+sortResults : printResults()
+printResults : System.out.println
+printResults : System.out.print
+
 class readFile{
-readInput()
+{method} readInput()
+int count
+Scanner : open file
+HashMap<String, Integer>
+String[] input
+String[] array
+inputFile.close()
+return map
 }
 
 @enduml

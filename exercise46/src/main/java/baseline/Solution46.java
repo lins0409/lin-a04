@@ -15,6 +15,8 @@ import java.util.*;
  */
 public class Solution46 {
 
+    private HashMap<String, Integer> map;
+
     public static void main (String[] args) throws FileNotFoundException {
         //initialize classes for file reading
         readFile rf = new readFile();
@@ -24,11 +26,14 @@ public class Solution46 {
         HashMap <String, Integer> map = rf.readInput();
 
         //print out the results, pass in the map
-        sol.printResults(map);
+        String[] tempKeys = sol.sortResults(map);
+        sol.printResults(map, tempKeys);
     }
 
-    //printing function
-    void printResults(HashMap<String, Integer> map){
+    //sort elements in the hash map
+    String[] sortResults(HashMap<String, Integer> map){
+        this.map = map;
+        Solution46 sol = new Solution46();
         int k = 0;
         int i, j;
         String[] keys = new String[map.size()];
@@ -38,6 +43,7 @@ public class Solution46 {
         //go through the map to store everything into the array
         for(Map.Entry<String, Integer> entry: map.entrySet()){
             keys[k] = entry.getKey();
+            //traverse through the items
             counts[k++] = entry.getValue();
         }
 
@@ -47,7 +53,7 @@ public class Solution46 {
             tempCount[i] = counts[i];
         }
 
-        //sort the array in reverse order
+        //sort the array in reverse order so most used word is at the top and least used is at the bottom
         Arrays.sort(counts, Collections.reverseOrder());
 
         //temporary keys for printing
@@ -58,20 +64,23 @@ public class Solution46 {
             int value = counts[i];
 
             for (j = 0; j < tempCount.length; j++) {
-
                 if (value == tempCount[j]) {
-
                     tempKeys[i] = keys[j];
                     break;
                 }
             }
         }
+        return tempKeys;
+    }
 
+    //print results to screen
+    void printResults(HashMap<String, Integer> map, String [] tempKeys){
+        int i, j;
+        //for spacing
         System.out.println();
 
         //print out the histogram
         for(i = 0;i < map.size(); i++) {
-
             int value = map.get(tempKeys[i]);
             //print out the item, and then indent it
             System.out.print(tempKeys[i] + " : \t");

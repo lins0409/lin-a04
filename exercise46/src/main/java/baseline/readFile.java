@@ -14,6 +14,7 @@ public class readFile{
         //create a map for storing all the elements
         HashMap<String, Integer> map = new HashMap<>();
 
+        //while it is not the end of the file
         while(inputFile.hasNext()){
             String input = inputFile.nextLine();
             //create an array to store the elements of the input file, also make sure that it's not read as a full string by separating it at every space
@@ -26,7 +27,6 @@ public class readFile{
                     count = map.get(key);
                     count++;
                     map.put(key, count);
-
                 }
                 else {
                     map.put(key, 1);
