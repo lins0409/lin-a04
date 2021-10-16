@@ -4,28 +4,32 @@
 class Solution46 {
 main()
 readFile()
-sortResults()
-printResults()
+Solution46()
+HashMap<String, Integer> map
+String tempKeys = sortResults()
+printResults() :pass tempKeys and map
 }
 
 Solution46 *-- readFile
 Solution46 *-- sortResults
 sortResults <|-- printResults
+sortResults : int i, j , k
 sortResults : String[] keys
 sortResults : String[] counts
-sortResults : Arrays.sort
 sortResults : String[] tempCount
+sortResults : Arrays.sort
 sortResults : String[] tempKeys
+sortResults : int value
 sortResults : return tempKeys
-sortResults : printResults()
+printResults : int i, j, value
 printResults : System.out.println
 printResults : System.out.print
 
 class readFile{
 {method} readInput()
 int count
-Scanner : open file
-HashMap<String, Integer>
+Scanner : inputFile
+HashMap<String, Integer> map
 String[] input
 String[] array
 inputFile.close()
