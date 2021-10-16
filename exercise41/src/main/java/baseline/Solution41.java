@@ -23,44 +23,35 @@ public class Solution41 {
         int count = 0;
         //initialize scanner and create a file path that is going to the text file
         Scanner inputFile = new Scanner(new File("./data/exercise41_input.txt"));
-
-        //this is to test to make sure that the file was opened without an issue
-        if (inputFile != null){
-            System.out.println("Successfully opened file\n");
-        }
-        else {
-            System.out.println("Error opening file\n");
-        }
-
         //then create a buffer and an array for the file
-        ArrayList <String> names = new ArrayList<String>();
+        ArrayList<String> names = new ArrayList<>();
 
-        //loop it so that while the file doesn't end it'll read everything in and store it in an array
-        while (inputFile.hasNextLine()) {
-            names.add(inputFile.nextLine());
-            //increment the number of employees every time a new one is added
-            count++;
-        }
+        //call class to add names to array and count how many employees there are
+        addingNames addNames = new addingNames();
+        //set the return value to count for printing
+        count = addNames.nameAdder(names, inputFile, count);
 
         //then call a function that will sort the names
-        sol.nameSorter(names);
+        ArrayList<String> sortedNames = sol.nameSorter(names);
 
         //then call a function to print out the results
-        sol.printOutResults(names, count);
+        sol.printOutResults(sortedNames, count);
 
         //close the file
         inputFile.close();
     }
 
     //function to sort the array
-    //maybe make it into a separate class? idk yet
-    void nameSorter(ArrayList <String> names){
+    ArrayList<String> nameSorter(ArrayList <String> names){
         //use sort function to sort the names
         Collections.sort(names);
+
+        return names;
     }
 
     //formatting of the output file is all done here
     void printOutResults(ArrayList <String> names, int count) throws IOException {
+        //make a fileWriter to write the file
         FileWriter fileWriter = new FileWriter("./data/exercise41_output.txt");
         fileWriter.write("Total of " + count + " names\n");
         fileWriter.write("-----------------\n");
