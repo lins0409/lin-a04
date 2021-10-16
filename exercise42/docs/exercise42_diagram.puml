@@ -2,7 +2,27 @@
 'https://plantuml.com/class-diagram
 
 class Solution42{
-
+main()
+printBeginningOfOutput()
 }
+
+Solution42 *-- main
+main : Scanner inputFile
+main : ArrayList<String> names
+main : addEmployees emp
+main : printBeginningOfOutput()
+main : inputFile.close()
+main *-- printBeginningOfOutput
+printBeginningOfOutput : FileWriter fileWriter
+printBeginningOfOutput : String[] tempString for formatting
+printBeginningOfOutput : fileWriter.close()
+
+
+class addEmployees{
+{method} ArrayList <String> addToList()
+}
+main <|-- addEmployees
+addToList : names.add
+addToList : return names;
 
 @enduml
