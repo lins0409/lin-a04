@@ -5,7 +5,7 @@
 
 package baseline;
 
-import java.io.*;
+import java.util.Scanner;
 
 /*
 *Pulling data from a file into a complex data structure makes parsing much simpler. Many programming languages support the JSON format, a popular way of representing data.
@@ -15,20 +15,23 @@ import java.io.*;
  */
 public class Solution44 {
 
-    public static void main (String[] args) {
-        //initialize instance of Solution 44 class
-        Solution44 sol = new Solution44();
+    public static void main(String[] args) {
+        //initialize instance of JsonOpener class and import Scanner
+        JsonOpener jOpen = new JsonOpener();
+        Scanner scanner = new Scanner(System.in);
 
-        sol.JsonReader();
+        //prompt user for the product name
+        System.out.print("What is the product name? ");
+        String product = scanner.nextLine();
+
+        //run it through the JSON reader
+        jOpen.JsonReader(product);
     }
 
     //call it to repeat until it makes the program exit
-    void mainCaller () throws IOException {
+    void mainCaller() {
         main(null);
     }
 
-    //pass in the string that has the saved name
-    void JsonReader() {
 
-    }
 }
