@@ -1,15 +1,39 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-Main --|> writeNewOuput
-Main : Scanner()
-writeNewOuput : FileWriter
-writeNewOuput : replaceAll("utilize", "use");
+Solution45 *-- main
+main : Scanner()
+main : addFile()
+main : writeFile()
+main : ArrayList <String< list
+main *-- addFile
+main *-- writeFile
+
+writeFile *-- writeNewOutput
+writeNewOutput : FileWriter
+writeNewOutput : int i
+writeNewOutput : String tempList
+writeNewOutput : replaceAll("utilize", "use")
+writeNewOutput : fileWriter.close()
+writeNewOutput : return "File printed"
+
+addFile *-- readFile
+readFile : String fileInfo
+readFile : list.add
+readFile : System.out.print(list)
+readFile : inputFile.close()
+readFile : return "File read"
+
 
 class Solution45 {
-Main
-writeNewOuput()
+main()
 }
 
+class writeFile{
+writeNewOutput()
+}
 
+class addFile{
+readFile()
+}
 @enduml
