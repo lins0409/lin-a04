@@ -2,7 +2,37 @@
 'https://plantuml.com/class-diagram
 
 class Solution44{
-
+main()
+mainCaller()
 }
+
+Solution44 *-- main
+Solution44 *-- mainCaller
+main : JsonOpener jOpen
+main : Scanner scanner
+main : System.out.print
+main : String product
+main : jOpen.JsonReader()
+mainCaller : main(null)
+
+Solution44 <|-- JsonOpener
+class JsonOpener{
+JsonReader()
+}
+
+JsonOpener *-- JsonReader
+JsonReader : String results
+JsonReader : Solution44 sol
+JsonReader : JSONParser parser
+JsonReader : try{}
+JsonReader : Object obj
+JsonReader : JSONArray array
+JsonReader : int flag
+JsonReader : jObj = JSONObject subject
+JsonReader : String itemName
+JsonReader : System.out.print
+JsonReader : sol.mainCaller()
+JsonReader : catch {}
+JsonReader : return results
 
 @enduml
